@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="app">
+		<button @click="component='aaa'">aaa组件</button><br>
+		<button @click="component='bbb'">bbb组件</button><br>
+		<!-- 动态的组件切换  is 指定的组件名称  根据组件的名称进行切换-->
+		<component :is='component'></component>
+	</div>
+  
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+	 	new Vue({
+	 		el:"#app",
+	 		data:{
+	 			component:"aaa"
+	 		},
+	 		components:{
+	 			aaa:{
+	 				template:"<h1>Hello AAA 组件</h1>"
+	 			},
+	 			bbb:{
+	 				template:"<h1>Hello BBB 组件</h1>"
+	 			}
+
+	 		}
+	 	})
+		
+	</script>
+
+	
+</body>
+</html>

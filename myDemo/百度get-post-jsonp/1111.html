@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+     <input type="button" value="按钮" @click="get()">
+	 <script src="vue.js"></script>
+	 <script src="vue-resource.js"></script>
+	 <script>
+	 	new Vue({
+	 		el:"body",
+	 		data:{
+	 		},
+	 		methods:{         
+               get(){
+               	  this.$http.post("post.php",{a:1,b:2},{emulateJSON:true}).then(function(data){                        
+               	  	 
+                         console.log(data.data);
+               	  },function(err){
+                        alert("err")
+               	  })
+               }
+
+	 		}
+	 	})
+	 </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+
+	<script src="../bower_components/konva/konva.min.js"></script>
+	<script>
+		//设置变量
+		var w = 800;
+		var h = 600;
+		var r = 200;
+
+		//创建舞台
+		var stage = new Konva.Stage({
+			width:w,
+			height:h,
+			container:"box"
+		})
+
+		//创建表盘层
+		var dialLayer = new Konva.Layer();
+		stage.add(dialLayer);
+
+		//绘制表盘
+		var dialCircle = new Konva.Circle({
+			x:w/2,
+			y:h/2,
+			radius:r,
+			stroke:"#000",
+			strokeWidth:10,
+			fill:"#eee"
+		})
+		dialLayer.add(dialCircle);
+
+		//绘制刻度
+		var bigDialScale = new DialScale({
+			x:w/2,
+			y:h/2,
+			outerRadius:r,
+			innerRadius:r-20,
+			stroke:"#000",
+			strokeWidth:10,
+			number:12
+		});
+		dialLayer.add(bigDialScale);
+
+		//绘制小刻度
+		var smallScale = new DialScale({
+			x:w/2,
+			y:h/2,
+			outerRadius:r,
+			innerRadius:r-10,
+			stroke:"#000",
+			strokeWidth:2,
+			number:60
+		});
+		dialLayer.add(smallScale);
+
+		//绘制
+		dialLayer.draw();
+
+
+		//创建指针层
+		var handLayer = new Konva.Layer();
+		stage.add(handLayer);
+
+		//秒针
+		var secondHand = new Konva.Line({
+			x:w/2,
+			y:h/2,
+			points:[-20,0,180,0],
+			stroke:"red",
+			strokeWidth:"2",
+			rotation:0
+		});
+		handLayer.add(secondHand);
+
+
+		//分针
+		var minuteHand = new Konva.Line({
+			x:w/2,
+			y:h/2,
+			points:[-20,0,150,0],
+			stroke:"#000",
+			strokeWidth:"5",
+			rotation:0
+		});
+		handLayer.add(minuteHand);
+
+
+		//时针
+		var hourHand = new Konva.Line({
+			x:w/2,
+			y:h/2,
+			points:[-20,0,120,0],
+			stroke:"#000",
+			strokeWidth:"8",
+			rotation:0
+		});
+		handLayer.add(hourHand);
+
+
+		var centerCirle = new Konva.Circle({
+			x:w/2,
+			y:h/2,
+			radius:10,
+			fill:"#000"
+		})
+		handLayer.add(centerCirle);
+
+
+
+		//绘制指针层
+		handLayer.draw();
+
+
+		function run(){
+			var date = new Date();
+
+			//秒针转动
+			var seconds = date.getSeconds();
+			secondHand.rotation(seconds/60 * 360 - 90);
+
+			//分针转动
+			var minutes = date.getMinutes() + seconds / 60;
+			minuteHand.rotation(minutes/60 * 360 - 90);
+
+			//时针转动
+			var hours = date.getHours() % 12 + minutes / 60;
+			hourHand.rotation(hours / 12 * 360 - 90);
+
+			handLayer.draw(); //重新绘制
+
+
+			setTimeout(run, 1000);
+		}
+		run();
+
+
+		/**
+         * 生成表盘刻度的构造函数
+         * @params object options 配置项
+		*/
+		function DialScale(options) {
+			options = options || {};
+			options.x = options.x || 0;
+			options.y = options.y || 0;
+			options.outerRadius = options.outerRadius || 0;
+			options.innerRadius = options.innerRadius || 0;
+			options.number = options.number || 12;
+			options.strokeWidth = options.strokeWidth || 10;
+			options.stroke = options.stroke || "#000";
+
+			//创建组
+			var group = new Konva.Group({
+				x:options.x,
+				y:options.y
+			});
+
+			//循环绘制刻度， 并且添加到组中
+			var angle = 0;
+			var angleDiff = 360 / options.number;
+			for (var i = 0; i < options.number; i ++) {
+
+				var line = new Konva.Line({
+					points:[Math.cos(angle / 180 * Math.PI) * options.outerRadius,
+							Math.sin(angle / 180 * Math.PI) * options.outerRadius,
+							Math.cos(angle / 180 * Math.PI) * options.innerRadius,
+							Math.sin(angle / 180 * Math.PI) * options.innerRadius
+							],
+					stroke:options.stroke,
+					strokeWidth:options.strokeWidth
+				});
+				group.add(line);
+
+				angle += angleDiff;
+			}
+
+
+			return group;
+		}
+
+
+
+	</script>
+</body>
+</html>

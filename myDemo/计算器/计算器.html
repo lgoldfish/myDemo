@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			font-size: 20px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		第一个数：<input type="text" id="num1"><br>
+		第二个数：<input type="text" id="num2"><br>
+		<button id="jia" value='+'>+</button>
+		<button id="jian" value='-'>-</button>
+		<button id="cheng" value='*'>*</button>
+		<button id="chu" value='/'>/</button>
+		<div id="box"></div>
+	</div>
+</body>
+  <script>	
+  		var oBtn1=document.getElementById('jia');
+  		var oBtn2=document.getElementById('jian');
+  		var oBtn3=document.getElementById('cheng');
+  		var oBtn4=document.getElementById('chu');
+  		var oDiv=document.getElementById('box');
+  		oBtn1.onclick=function (){
+  	    var oNum1=Number(document.getElementById('num1').value);
+  		var oNum2=Number(document.getElementById('num2').value);
+  		  var a=oNum1+oNum2;
+  			oDiv.innerHTML=a;		
+  		}
+ 		oBtn2.onclick=function (){
+  	    var oNum1=Number(document.getElementById('num1').value);
+  		var oNum2=Number(document.getElementById('num2').value);
+  		  var a=oNum1-oNum2;
+  			oDiv.innerHTML=a;		
+  		}
+  		oBtn3.onclick=function (){
+  	    var oNum1=Number(document.getElementById('num1').value);
+  		var oNum2=Number(document.getElementById('num2').value);
+  		  var a=oNum1*oNum2;
+  			oDiv.innerHTML=a;		
+  		}
+  		oBtn4.onclick=function (){
+  	    var oNum1=Number(document.getElementById('num1').value);
+  		var oNum2=Number(document.getElementById('num2').value);
+  		  var a=oNum1/oNum2;
+  			oDiv.innerHTML=a;		
+  		}
+  </script>
+</html>

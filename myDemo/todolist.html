@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>to do list </h1>
+	<hr>
+	<div id="app">
+		<h3>添加任务:</h3>
+		<input type="text" 
+		 v-model="todo" 
+		 @keyup.13 = "addTodo"
+		placeholder="请输入要完成的任务">
+		<ul>
+			<li v-for="(task,index) in tasks">
+				{{task}}
+				<button @click="deleteTask(index)">删除</button>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="./node_modules/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:"#app",
+			data:{
+				tasks:[],
+				todo:''
+			},
+			methods:{
+				addTodo(){
+					if(vm.todo!=''){
+						vm.tasks.unshift(vm.todo);
+						//添加完成后 清空数据
+						this.todo="";
+					}
+				},
+				deleteTask(index){
+					console.log(index);
+					console.log("deleteTask");
+					//this.tasks = [];
+					//this.tasks.splice(0);
+					this.tasks.splice(index,1);
+				}
+			}
+		})
+		
+	</script>
+	
+</body>
+</html>

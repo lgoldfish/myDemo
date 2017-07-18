@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+		font-size:100px;
+		color: red;
+		}
+	</style>
+</head>
+<body>
+<h1>运算顺序为，先填值，再选择运算符，最后提交</h1>
+	第一个数：<input type="number" id='input1'><hr>
+	<input type="radio" onclick='on(1)'id='ra1'  name='an'>+
+	<input type="radio" onclick='on(2)'id='ra2'  name='an'>-
+	<input type="radio" onclick='on(3)'id='ra3'  name='an'>*
+	<input type="radio" onclick='on(4)'id='ra4'  name='an'>/<hr>
+	第二个数：<input type="number" id='input2'><hr>
+	<button onclick="getNum()">提交</button>
+	<div id="box"></div>
+</body>
+<!-- //思路：
+1.on（）函数负责运算
+2.getNum()函数负责输出值 -->
+<script>
+	var x=null;
+	function on(n){
+		var inp1=Number(document.getElementById('input1').value)
+		var inp2=Number(document.getElementById('input2').value)
+		
+		switch(n){
+		case 1:x=inp1+inp2;break;
+		case 2:x=inp1-inp2;;break;
+		case 3:x=inp1*inp2;;break;
+		case 4:x=inp1/inp2;;break;
+		}
+	}
+	function getNum(){
+		document.getElementById('box').innerHTML=x;
+	}
+	
+</script>
+</html>

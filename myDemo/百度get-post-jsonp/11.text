@@ -1,0 +1,62 @@
+$http (ajax)
+
+引入：vue-resouce
+
+   get： 
+       获取一个普通的文本数据
+                	this.$http.get("11.text").then(function(suc){
+                		console.log(suc.data)
+                	},function(err){
+                        console.log("shibai")
+                	})
+
+       给服务发送数据:√
+		this.$http.get('get.php',{
+		    a:1,
+		    b:2
+		}).then(function(res){
+		    alert(res.data);
+		},function(res){
+		    alert(res.status);
+		});
+
+   post：
+
+         this.$http.post('post.php',{
+		    a:1,
+		    b:20
+		},{
+		    emulateJSON:true
+		}).then(function(res){
+		    alert(res.data);
+		},function(res){
+		    alert(res.status);
+		});
+
+
+   jsonp: (跨域   要有callback)
+
+   https://sug.so.360.cn/suggest?callback=suggest_so&word=a
+
+
+   https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&cb=jQuery110208062549608731093_1493947668607&_=1493947668614
+
+
+
+   https://www.baidu.com/s?wd=fsa
+
+
+
+             this.$http.jsonp(
+                		"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+                		{
+                		 wd:"a"
+                		},
+                		{
+                			jsonp:"cb"   //callback的名字
+                	     
+                	     }).then(function(data){
+                		console.log(data.data.s)
+                	},function(err){
+                        console.log("shibai")
+                	})

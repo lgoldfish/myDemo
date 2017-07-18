@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>购物车的全选 全不选  反选</h1>
+	<hr>
+
+
+	<ul>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+		<li><input type="checkbox" name="" id="">小艳艳</li>
+	</ul>
+
+	<button id='btn1'>全选</button>
+	<button id='btn2'>全不选</button>
+	<button id='btn3'>反选</button>
+
+
+	<!-- 提供思路 1.获取所有input的集合。  2遍历  3.改变input框中checked的值（true | false） -->
+</body>
+<script>
+     var oInput=document.getElementsByTagName('input');
+     var oBtn1=document.getElementById('btn1');
+     var oBtn2=document.getElementById('btn2');
+     var oBtn3=document.getElementById('btn3');
+	 oBtn1.onclick= function (){
+		for(var i=0;i<oInput.length;i++){
+				oInput[i].checked=true;
+		}
+	}
+	oBtn2.onclick=function(){
+		for(var i=0;i<oInput.length;i++){
+				oInput[i].checked=false;
+		}
+	}
+	oBtn3.onclick=function(){
+		for(var i=0;i<oInput.length;i++){
+			if(oInput[i].checked){
+				oInput[i].checked=false;
+			}else{
+				oInput[i].checked=true;
+			}
+		}
+	}
+</script>
+</html>

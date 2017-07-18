@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="mycanvas" >您的浏览器不支持cnavas</canvas>
+
+
+	<script>
+		//定义数据
+		var data = [
+			{title:"博士", value:"0.1", color:"red"},
+			{title:"硕士", value:"0.1", color:"green"},
+			{title:"本科", value:"0.3", color:"purple"},
+			{title:"专科", value:"0.2", color:"pink"},
+			{title:"中学", value:"0.3", color:"orange"}
+		];
+
+
+		var canvas = document.getElementById("mycanvas");
+		canvas.width = 500;
+		canvas.height = 500;
+		canvas.style.border = "1px solid #ccc";
+
+		//获取绘图环境
+		var cxt = canvas.getContext("2d");
+
+		var radius = 150; //半径
+		var startAngle = 0.3; //开始弧度
+
+		//绘制饼图
+		for (var i = 0; i < data.length; i ++){
+
+			var endAngle = startAngle + data[i].value * 2 * Math.PI;
+			cxt.beginPath();
+			cxt.moveTo(250,250);
+			console.log("1",startAngle)
+			console.log("2",endAngle)
+
+			cxt.arc(250,250,radius,startAngle, endAngle);
+			cxt.fillStyle = data[i].color;
+			cxt.fill();
+
+			//写字
+			var angle = startAngle + data[i].value * Math.PI;
+			var x = Math.cos(angle) * (radius+15) + 250
+			var y = Math.sin(angle) * radius + 250;
+
+			cxt.textBaseline = "middle";
+			cxt.textAlign = "start";
+			if (angle > Math.PI / 2 && angle < Math.PI * 1.5) {
+				cxt.textAlign = "end";
+			}
+
+			cxt.fillText(data[i].title+" "+data[i].value * 100 +"%",x, y);
+
+		
+
+			startAngle = endAngle; //下一次开始弧度
+		}
+
+
+		//写字
+		
+
+	</script>
+</body>
+</html>

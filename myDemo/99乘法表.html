@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table{
+			width: 800px;
+			border-collapse: collapse;
+		}
+		table td{
+			padding: 5px;
+			/*border:1px solid #ccc;*/
+		}
+	</style>
+</head>
+<body>
+	<h1>使用for、while、do…while循环分别做出四种的九九乘法表格的输出</h1>
+
+	<hr>
+	<table>	
+	   <script>
+	   	   for(var i=1;i<=9;i++){
+	   	   	   document.write("<tr>")
+
+	   	   	       for(var j=1;j<=i;j++){
+	   	   	       	document.write("<td style='border:1px solid #ddd'>"+i+"x"+j+"="+i*j+"</td>")
+	   	   	       }
+	   	   	   document.write("</tr>")
+	   	   }
+
+
+        //首先当i=1的时候，i<=9条件成立，j=1;j<=1;条件成立，输出1*1=1; 执行j++,j=2;看条件2<=1条件不成立，跳出循环，执行i++，此时i=2,i<=9条件成立,j=1;j<=2;条件成立，执行2*1=2，执行j++,此时J=2;j<=2，条件依然成立，继续输出2*2=4，继续执行j++，j=3条件不成立，跳出循环执行i++，此时i=3。。。。。。。
+	   </script>
+
+	</table>
+	<table>	
+	   <script>
+	   	   for(var i=1;i<=9;i++){
+	   	   	   document.write("<tr>")
+                   for(var j=8;j>=i;j--){
+                   	  document.write("<td></td>")
+                   }
+
+
+	   	   	       for(var j=1;j<=i;j++){
+	   	   	       	document.write("<td style='border:1px solid #ddd'>"+i+"x"+j+"="+i*j+"</td>")
+	   	   	       }
+	   	   	   document.write("</tr>")
+	   	   }
+	   </script>
+	</table>
+
+
+	<table>
+		
+		 <script>
+		 	  for(var i=9;i>=1;i--){
+		 	  	document.write("<tr>")
+                    for(var j=i;j>=1;j--){
+                         	document.write("<td style='border:1px solid #ddd'>"+i+"x"+j+"="+i*j+"</td>")
+                    }
+		 	  	document.write("</tr>")
+		 	  }
+
+
+		 	  //当i=9的时候，条件成立执行j=9,条件成立,输出9*9=81，执行j--，此时j=8;j>=1;条件成立，输出9*8=72.。。。当j--等于0的时候，跳出循环，执行i--，此时i=8,条件成 立输出8*8  8*7  8*6
+		 </script>
+
+
+		  <script>
+		 	  for(var i=9;i>=1;i--){
+		 	  	document.write("<tr>")
+                      for(var j=8;j>=i;j--){
+                   	  document.write("<td></td>")
+                   }
+
+
+                    for(var j=i;j>=1;j--){
+                         	document.write("<td style='border:1px solid #ddd'>"+i+"x"+j+"="+i*j+"</td>")
+                    }
+		 	  	document.write("</tr>")
+		 	  }
+
+
+		 	 
+		 </script>
+	</table>
+
+
+</body>
+</html>

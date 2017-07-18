@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+	<script src="../bower_components/konva/konva.js"></script>
+	<script>
+		var stage = new Konva.Stage({
+			container:"box",
+			width:window.innerWidth,
+			height:window.innerHeight
+		});
+
+		var layer = new Konva.Layer();
+		stage.add(layer);
+
+		var width = 800;
+
+
+		var progressValue = new Konva.Rect({
+			x:200,
+			y:200,
+			width:0,
+			height:50,
+			fill:"#abcdef"
+		});
+		layer.add(progressValue);
+
+
+		var progressLine = new Konva.Rect({
+			x:200,
+			y:200,
+			width:width,
+			height:50,
+			stroke:"#369",
+			strokeWidth:4,
+			cornerRadius:5
+		});
+		layer.add(progressLine);
+
+		console.log(progressValue);
+
+		var animation = new Konva.Animation(function(){
+			if (progressValue.width() < width) {
+				progressValue.width(progressValue.width() + 10);
+			} else {
+				animation.stop();
+			}
+		}, layer);
+
+		animation.start();
+
+		
+	
+		layer.draw();
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  /*预定义样式*/
+    * {
+      margin:0;
+      padding:0;
+    }
+    body {
+      perspective: 700px;
+    }
+    ul {
+      list-style: none;
+    }
+    /*功能样式*/
+    ul {
+      width: 200px;
+      height: 200px;
+      margin:100px auto;
+      position: relative;
+      transition: all 2s;
+      transform-style: preserve-3d;
+      transform: scaleX(2.5) scaleY(1.5) rotateX(0deg);
+    }
+    ul li{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      line-height: 200px;
+      color: white;
+      font-size: 40px;
+      position: absolute;
+      background-size: cover;
+    }
+    ul li:nth-child(1) {
+      transform:rotateX(0deg) translateZ(100px);
+      background: url(./images/1.jpg) no-repeat;
+      background-size: cover;
+    }
+    ul li:nth-child(2) {
+      transform:rotateX(-90deg) translateZ(100px);
+      background: url(./images/2.jpg) no-repeat;
+      background-size: cover;
+    }
+    ul li:nth-child(3) {
+      transform:rotateX(180deg) translateZ(100px);
+      background: url(./images/3.jpg) no-repeat;
+      background-size: cover;
+    }
+    ul li:nth-child(4) {
+      transform:rotateX(-270deg) translateZ(100px);
+      background: url(./images/4.jpg) no-repeat;
+      background-size: cover;
+    }
+    ul li:nth-child(5) {
+      transform:rotateX(-90deg) translateZ(100px);
+      /*background: url(./images/4.jpg) no-repeat;*/
+      background: rgba(255,0,255,.6);
+      /*background-size: cover;*/
+    }
+     ul li:nth-child(6) {
+      transform:rotateX(90deg) translateZ(100px);
+      /*background: url(./images/4.jpg) no-repeat;*/
+      background: rgba(23,0,45,.6);
+      /*background-size: cover;*/
+    }
+
+    span {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-top:3px solid #000;
+      border-right: 3px solid #000;
+      transform: rotate(45deg);
+      top: 200px;
+      left: 50%;
+      margin-left: 100px;
+    }
+    .prev {
+      transform: rotate(-135deg);
+      margin-left: -200px;
+    }
+  </style>
+</head>
+<body>
+   <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <span class="next"></span><span class="prev"></span>
+</body>
+<script src="../jq.js"></script>
+<script>
+  $(function(){
+    var num =0;
+    $('.next').on('click',function(){
+      num++;
+      $('ul').css("transform","scaleX(2.5) scaleY(1.5) rotateX("+num*90+"deg)");
+    })
+    $('.prev').on('click',function(){
+      num--;
+      $('ul').css("transform","scaleX(2.5) scaleY(1.5) rotateX("+num*90+"deg)");
+    })
+  })
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="mycanvas"></canvas>
+</body>
+<script type="text/javascript">
+	var canvas=document.getElementById("mycanvas")
+	canvas.width=600;
+	canvas.height=600;
+	canvas.style.marginLeft="300px";
+	canvas.style.marginTop="100px";
+	var cxt=canvas.getContext("2d")
+
+	for(var i=0;i<=10;i++){
+		cxt.moveTo(0,i*50)
+		cxt.lineTo(500,i*50)
+		cxt.stroke()
+	}
+	for(var j=0;j<=10;j++){
+		cxt.moveTo(j*50,0)
+		cxt.lineTo(j*50,500)
+		cxt.stroke()
+	}
+</script>
+</html>

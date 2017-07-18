@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.gray{
+			background: #ccc
+		}
+	</style>
+</head>
+<body>
+   <div id="box">
+		<input type="text" v-model="todo" @keyup="get($event)" @keydown.down="changeDown" @keydown.up.prevent="changeUp" >
+
+	<ul>
+		<li v-for="value in myData"  :class="{gray:$index==now}">
+			{{value}}
+		</li>
+	</ul>
+
+	<p v-show="myData.length==0">暂无数据...</p>
+  </div>
+
+	<script src="vue.js"></script>
+	<script src="vue-resource.js"></script>
+
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				myData:[],   //存储li里面的数据
+				todo:'',
+				now:"-1"
+			},
+			methods:{
+                
+                get(ev){
+
+                //当我按下上或者下键的时候，不在请求
+                    if(ev.keyCode==38 || ev.keyCode==40){
+                    	return;
+                    }
+
+                    if(ev.keyCode==13){
+                    	window.open("https://www.baidu.com/s?wd="+this.todo)
+                    }
+                	this.$http.jsonp(
+                		"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+                		{
+                		 wd:this.todo
+                		},
+                		{
+                			jsonp:"cb"
+                	     
+                	     }).then(function(data){
+                           //吧请求到的数据添加到数组里
+                	     	this.myData=data.data.s;
+ 
+                	},function(err){
+                        console.log("shibai")
+                	})
+                },
+
+                changeDown(){
+
+                     this.now++;
+                     // 如果当前的索引值等于数组的长度
+                     if(this.now==this.myData.length){
+                     	this.now=-1;
+                     }
+                     
+                     // 当前的文本框等于数组中的当前内容
+                     this.todo=this.myData[this.now];
+                },
+                changeUp(){
+                	this.now--;
+                	if(this.now==-2){
+                		this.now=this.myData.length-1;
+                	}
+
+                	   this.todo=this.myData[this.now];
+                }
+			}
+		})
+	</script>
+</body>
+</html>

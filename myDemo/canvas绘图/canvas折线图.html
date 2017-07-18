@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="mycanvas">您的浏览器不支持</canvas>
+</body>
+ <script type="text/javascript">
+ 	var data = [
+		{month:"01月",value:210.2,color:"red"},
+		{month:"02月",value:248.74,color:"green"},
+		{month:"03月",value:310.21,color:"purple"},
+		{month:"04月",value:448.08,color:"pink"},
+		{month:"05月",value:459.66,color:"orange"},
+		{month:"06月",value:269.66,color:"gray"},
+		{month:"07月",value:321.21,color:"black"},
+		{month:"08月",value:469.66,color:"purple"},
+		{month:"09月",value:169.66,color:"green"},
+		{month:"10月",value:306.66,color:"red"},
+		{month:"11月",value:289.66,color:"blue"},
+		{month:"12月",value:182.66,color:"pink"}
+	] 
+
+ 	var canvas=document.getElementById("mycanvas")
+	canvas.width=1000;
+	canvas.height=600;
+	canvas.style.border="1px solid #ccc"
+	canvas.style.margin="100px 200px"
+	var cxt=canvas.getContext("2d")
+
+	cxt.beginPath()
+	cxt.moveTo(50,550)
+	cxt.lineTo(50,50)
+	cxt.moveTo(50,550)
+	cxt.lineTo(950,550)
+// ---------------------------
+	cxt.moveTo(934,542)
+	cxt.lineTo(950,550)
+	cxt.lineTo(934,558)
+	cxt.moveTo(42,66)
+	cxt.lineTo(50,50)
+	cxt.lineTo(58,66)
+	cxt.stroke()
+// ----------------------------------
+    cxt.textBaseline="middle"
+    cxt.textAlign="end"
+	for(var i=0;i<10;i++){
+			cxt.strokeText(i*50,50,550-50*i)
+	}
+
+// --------------------------------
+ for(var index=0;index<data.length;index++){
+ 		cxt.beginPath()
+ 		cxt.textAlign="center"
+ 		cxt.strokeStyle=data[index].color
+    	cxt.strokeText(data[index].month,100+65*index,570)
+    	cxt.strokeText(data[index].value+"亿元",100+65*index,540-data[index].value)
+ // ------------------------
+    	cxt.beginPath()
+    	cxt.moveTo(100+65*index,550-data[index].value)
+    	cxt.lineTo(100+65*(index+1),550-data[index+1].value)
+    	cxt.strokeStyle=data[index+1].color
+    	cxt.stroke()
+    }
+
+ </script>
+</html>

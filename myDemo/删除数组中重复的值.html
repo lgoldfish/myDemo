@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+
+    function newArr(arr){
+        var arr2=new Array();
+        for(var i in arr){
+            if(arr2.indexOf(arr[i])==-1) {
+                arr2.push(arr[i]);
+            }
+        }
+         document.write(arr2)
+        return arr2;
+
+    }
+    var num=['xiaohua','xiaocao','xiaohua','聪明',6,'聪明']; 
+    newArr(num)
+</script>
+</html>

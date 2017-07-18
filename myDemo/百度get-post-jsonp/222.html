@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<input type="button" value="按钮" @click="ok">
+
+
+	<script type="text/javascript" src="vue.js"></script>
+	<script src="vue-resource.js"></script>
+
+	<script>
+		
+		new Vue({
+			el:"body",
+			data:{
+
+			},
+			methods:{
+                
+                // ok(){
+
+                // 	this.$http.get("11.text").then(function(suc){
+                // 		console.log(suc.data)
+                // 	},function(err){
+                //         console.log("shibai")
+                // 	})
+                // }
+
+
+
+                // ok(){
+
+                // 	this.$http.jsonp("https://sug.so.360.cn/suggest",{
+                // 		word:"a"
+                // 	}).then(function(data){
+                // 		console.log(data.data.s)
+                // 	},function(err){
+                //         console.log("shibai")
+                // 	})
+                // }
+
+
+                 //     ok(){
+
+                	// this.$http.jsonp("https://sug.so.360.cn/suggest",{
+                	// 	word:"a"
+                	// }).then(function(data){
+                	// 	console.log(data.data.s)
+                	// },function(err){
+                 //        console.log("shibai")
+                	// })
+
+
+                	   ok(){
+
+                	this.$http.jsonp(
+                		"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+                		{
+                		 wd:"a"
+                		},
+                		{
+                			jsonp:"cb"
+                	     
+                	     }).then(function(data){
+                		console.log(data.data.s)
+                	},function(err){
+                        console.log("shibai")
+                	})
+                }
+			}
+		})
+	</script>
+</body>
+</html>

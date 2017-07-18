@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>敏感词匹配</title>
+</head>
+<body>
+	<h1>敏感词匹配</h1>
+	<hr>
+	<textarea  id="txt1" cols="30" rows="10"></textarea> <br>
+	<button id="btn" value="过滤">点击过滤</button> <br>
+	<textarea  id="txt2" cols="30" rows="10"></textarea>
+</body>
+<script>
+	//var doc= document;
+	//第一步 ： 获取  
+	var oTxt1 = document.getElementById('txt1');
+	var oTxt2 = document.getElementById('txt2');
+	var oBtn = document.getElementById('btn');
+
+	//绑定事件
+	oBtn.onclick = function (){
+		var re = /fuck|傻吊|去你大爷的|DSD|DDS/g;
+		oTxt2.value = oTxt1.value.replace(re,'孙子，别骂人，谁骂人谁是小狗');
+	}
+</script>
+</html>

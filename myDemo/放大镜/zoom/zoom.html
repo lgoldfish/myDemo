@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        .box{
+        	width: 400px;
+        	height: 300px;
+        	border:1px solid #ccc;
+        	cursor: crosshair;
+        	position: relative;
+        }
+        .box img{
+        	width: 400px;
+        	height: 300px;
+        }
+        #zoom{
+        	position: absolute;
+        	width: 100px;
+        	height: 100px;
+        	background: red;
+        	opacity: 0.5;
+        	filter:alpha(opacity=50);
+        	left: 0px;
+        	top: 0px;
+        	display: none;
+        }
+        .bigbox img{
+        	width: 1600px;
+        	height: 1200px;
+        }
+        .bigbox{
+        	width: 400px;
+        	height: 400px;
+        	overflow: hidden;
+        	position: absolute;
+        	display: none;
+        }
+	</style>
+</head>
+<body>
+	<h1>放大镜</h1>
+	<hr>
+   
+<div style="margin-top: 300px;">
+	<div class="box" id="box">
+		<img src="7.jpg" alt="">
+		<div id="zoom"></div>
+	</div>
+	<div class="bigbox" id="bigbox">
+		<img src="7.jpg" alt="">
+	</div>
+</div>
+	<script>
+          var box=document.getElementById('box');
+          var bigbox=document.getElementById('bigbox');
+
+          box.onmousemove=function(en){
+
+          	 var e=en||window.event;
+
+          	 bigbox.style.display="block";
+
+             bigbox.style.left=box.offsetLeft+box.offsetWidth+5+'px';
+             bigbox.style.top=box.offsetTop+'px';
+
+             // 获取鼠标在小图上的位置
+             var x=e.clientX-box.offsetLeft;
+             var y=e.clientY+document.body.scrollTop-box.offsetTop;
+
+             zoom.style.display="block";
+
+             // 求zoom的位置
+             var left=Math.min(Math.max(x-50,0),300);
+             var top=Math.min(Math.max(y-50,0),200);
+            
+             zoom.style.left=left+'px';
+             zoom.style.top=top+'px';
+
+             bigbox.scrollLeft=left*4;
+             bigbox.scrollTop=top*4;
+        }
+      
+        box.onmouseout=function(){   
+            bigbox.style.display="none";
+            zoom.style.display="none";
+          }
+
+  
+	</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var obj = {
+		
+	}
+	obj.__proto__.showColor = function (color) {
+		alert(color)
+	}
+	obj.showColor('red');
+
+	var obj2 = {};
+	//obj2.showColor = obj.showColor;
+	obj2.showColor('blue');
+
+	var obj3 = {};
+
+	obj3.showColor('pink');
+
+	function show() {
+	
+	}
+
+	
+</script>
+</html>

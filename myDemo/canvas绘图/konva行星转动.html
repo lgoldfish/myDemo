@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+	<script src="../bower_components/konva/konva.js"></script>
+	<script>
+
+		var stage = new Konva.Stage({
+			container:"box",
+			width:window.innerWidth,
+			height:window.innerHeight
+		});
+
+		//定义变量
+		var cx = 400;
+		var cy = 400;
+		var bigRadius = 240;
+		var middleRadius = 160;
+		var centerRadius = 80;
+
+
+		//创建背景层
+		var bgLayer = new Konva.Layer();
+		stage.add(bgLayer);
+
+
+		//大圈
+		var bigCircle = new Konva.Circle({
+			x:cx,
+			y:cy,
+			radius:bigRadius,
+			stroke:"#ccc",
+			dash:[10,2]
+		});
+		bgLayer.add(bigCircle);
+
+		//中圈
+		var middleCircle = new Konva.Circle({
+			x:cx,
+			y:cy,
+			radius:middleRadius,
+			stroke:"#ccc",
+			dash:[10,2]
+		});
+		bgLayer.add(middleCircle);
+
+		//中心
+		var centerCircle = new CircleText({
+			x:cx,
+			y:cy,
+			innerRadius:centerRadius,
+			outerRadius:centerRadius+30,
+			innerFill:"#369",
+			outerFill:"#ddd",
+			text:"WEB前端",
+			fontSize:18,
+			fontWeight:"bold",
+			fontFill:"#fff",
+			fontX:-35,
+			fontY:-9
+
+		});
+		bgLayer.add(centerCircle);
+
+		
+		bgLayer.draw();
+
+
+
+		//创建动画层
+		var layer = new Konva.Layer();
+		stage.add(layer);
+
+		//最外圈的小球
+		var bigCircleData = [
+			{
+				innerRadius:40,
+				outerRadius:50,
+				innerFill:"#5cb85c",
+				outerFill:"#ddd",
+				text:"HTML5",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			},
+			{
+				innerRadius:40,
+				outerRadius:50,
+				innerFill:"#5bc0de",
+				outerFill:"#ddd",
+				text:"CSS3",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			},
+			{
+				innerRadius:40,
+				outerRadius:50,
+				innerFill:"#f0ad4e",
+				outerFill:"#ddd",
+				text:"ECMA6",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			},
+			{
+				innerRadius:40,
+				outerRadius:50,
+				innerFill:"#d9534f",
+				outerFill:"#ddd",
+				text:"jQuery",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			},
+			{
+				innerRadius:40,
+				outerRadius:50,
+				innerFill:"#428bca",
+				outerFill:"#ddd",
+				text:"NodeJS",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			}
+		];
+
+
+		//创建一个组
+		var bigCircleGroup = new Konva.Group({
+			x:cx,
+			y:cy
+		});
+		layer.add(bigCircleGroup); //把组添加到层中
+
+
+		var angle = 0;
+		var angleDiff = 360 / bigCircleData.length;
+
+		bigCircleData.forEach(function(option, index){
+			
+			option.x = Math.cos(angle / 180 * Math.PI) * bigRadius;
+			option.y = Math.sin(angle / 180 * Math.PI) * bigRadius;
+			var circleText = new CircleText(option);
+
+			bigCircleGroup.add(circleText); //添加到组中
+
+			angle += angleDiff;
+
+		});
+
+
+
+		//绘制 中间圈的小球
+		//定义数据
+		var middleCircleData = [
+			{
+				innerRadius:30,
+				outerRadius:40,
+				innerFill:"purple",
+				outerFill:"#ddd",
+				text:"VueJS",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			},
+			{
+				innerRadius:30,
+				outerRadius:40,
+				innerFill:"pink",
+				outerFill:"#ddd",
+				text:"Angle",
+				fontSize:14,
+				fontX:-20,
+				fontY:-7,
+				opacity:.7
+			}
+		]
+
+		//创建组
+		var middleCircleGroup = new Konva.Group({
+			x:cx,
+			y:cy
+		});
+		layer.add(middleCircleGroup);
+
+		//添加小圆圈
+		var angle1 = 0;
+		var angleDiff1 = 360 / middleCircleData.length;
+
+		middleCircleData.forEach(function(option, index){
+			
+			option.x = Math.cos(angle1 / 180 * Math.PI) * middleRadius;
+			option.y = Math.sin(angle1 / 180 * Math.PI) * middleRadius;
+			var circleText = new CircleText(option);
+
+			middleCircleGroup.add(circleText); //添加到组中
+
+			angle1 += angleDiff1;
+
+		});
+
+
+
+
+		layer.draw();
+
+
+		//两个圈 要转
+		var angleSpeed = 60; //每秒钟转的角度
+		var animation = new Konva.Animation(function(frame){
+			var angleDiff = angleSpeed * frame.timeDiff / 1000;
+			//外圈转动
+			bigCircleGroup.rotate(angleDiff);
+			bigCircleGroup.getChildren().each(function(val, index){
+				val.rotate(-angleDiff);
+			}) 
+
+			//内圈转动
+			middleCircleGroup.rotate(-angleDiff);
+			middleCircleGroup.getChildren().each(function(val, index){
+				val.rotate(angleDiff);
+			}) 
+
+		}, layer);
+		animation.start();
+
+
+		//事件
+		bigCircleGroup.on("mouseenter", function(){
+			angleSpeed = 10;
+		}).on("mouseleave touchend", function(){
+			angleSpeed = 60;
+		})
+
+
+		/**
+         * 生成带文字的双层圆
+		*/
+		function CircleText(options) {
+			//配置项
+			options = options || {};
+			options.x = options.x || 0;
+			options.y = options.y || 0;
+			options.innerRadius = options.innerRadius || 0;
+			options.outerRadius = options.outerRadius || 0;
+			options.innerFill = options.innerFill || "red";
+			options.outerFill = options.outerFill || "#ddd";
+			options.text = options.text || "小萍萍";
+			options.fontFill = options.fontFill || "#fff";
+			options.fontSize = options.fontSize || 16;
+			options.fontWeight = options.fontWeight || "normal";
+			options.fontFamily = options.fontFamily || "MicrosoftYaHei";
+			options.fontX = options.fontX || 0;
+			options.fontY = options.fontY || 0;
+			options.opacity = options.opacity || 1;
+
+			//创建组
+			var group = new Konva.Group({
+				x:options.x,
+				y:options.y
+			})
+
+			//最中心的实心圆
+			var circle = new Konva.Circle({
+				x:0,
+				y:0,
+				radius:options.innerRadius,
+				fill:options.innerFill
+			});
+			group.add(circle);
+
+			//空心圆 圆环
+			var ring = new Konva.Ring({
+				x:0,
+				y:0,
+				innerRadius:options.innerRadius,
+				outerRadius:options.outerRadius,
+				fill:options.outerFill
+			});
+			group.add(ring);
+
+			//文字
+			var text = new Konva.Text({
+				x:options.fontX,
+				y:options.fontY,
+				text:options.text,
+				fill:options.fontFill,
+				fontSize:options.fontSize,
+				fontFamily:options.fontFamily,
+				fontWeight:options.fontWeight
+			});
+			group.add(text);
+
+
+			return group;
+
+
+		}
+
+
+
+
+
+
+	
+
+	</script>
+</body>
+</html>

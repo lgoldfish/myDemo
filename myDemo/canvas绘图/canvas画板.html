@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	选择画笔的颜色:<input type="color" id="mycolor" name="">
+	<input type="button" name="" onclick="myClear()" value="清空画布">
+	<br>
+	<canvas id="mycanvas"></canvas>
+</body>
+<script type="text/javascript">
+	var canvas =document.getElementById("mycanvas")
+	var mycolor=document.getElementById("mycolor")
+	var colors=null;
+	mycolor.onchange=function(){
+		colors=mycolor.value
+	}
+	canvas.width=600
+	canvas.height=600
+	canvas.style.border="3px solid #ccc"
+	var cxt=canvas.getContext("2d")
+	canvas.onmousedown=function(e){
+		var x=e.clientX-canvas.offsetLeft;
+		var y=e.clientY-canvas.offsetTop;
+		cxt.beginPath()
+		cxt.moveTo(x,y)
+		canvas.onmousemove=function(e){
+			var x=e.clientX-canvas.offsetLeft;
+			var y=e.clientY-canvas.offsetTop;
+			cxt.lineTo(x,y)
+			cxt.strokeStyle=colors;
+			cxt.stroke()
+		}
+		canvas.onmouseup=function(){
+			canvas.onmousemove=null
+		}
+	}
+	function myClear(){
+		cxt.clearRect(0,0,600,600)
+	}
+</script>
+</html>

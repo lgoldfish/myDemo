@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面相对象</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function CreatePerson(name,age,sex,hobby){
+		this.name  = name;
+		this.age = age;
+		this.sex = sex;
+		this.hobby = hobby;
+		
+	}
+	CreatePerson.prototype.show = function () {
+		document.write('我的名字是'+this.name + ',我的年龄是'+this.age+',我的性别是'+this.sex+',我的爱好是'+this.hobby);
+	}
+	var p1 = new CreatePerson('小艳艳','99','女','航哥'); 
+	var p2 = new CreatePerson('小萍萍','19','女','类似于航哥的男人');
+p1.show();
+	p2.show();
+
+	alert(p1.show == p2.show);
+</script>
+</html>

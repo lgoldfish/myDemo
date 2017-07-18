@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	构造函数的演化</title>
+</head>
+<body>
+	
+</body>
+<script>
+// 工厂模式  
+	function createPerson(name) {
+		var obj = new Object();
+
+		obj.name = name;
+		obj.showName = function () {
+			alert(this.name);
+		}
+
+		return obj;
+	}
+
+	var p1 = createPerson('小明明');
+	p1.showName();
+	var p2 = createPerson('小艳艳');
+	p2.showName();
+
+//	var p3 ...p4 p100
+</script>
+</html>

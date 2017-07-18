@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+		font-size:100px;
+		color: red;
+		}
+	</style>
+</head>
+<body>
+	第一个数：<input type="number" id='input1'><hr>
+	<input type="radio" onclick='on(1)'id='ra1'  name='an'>+
+	<input type="radio" onclick='on(2)'id='ra2'  name='an'>-
+	<input type="radio" onclick='on(3)'id='ra3'  name='an'>*
+	<input type="radio" onclick='on(4)'id='ra4'  name='an'>/<hr>
+	第二个数：<input type="number" id='input2'><hr>
+	<button onclick="getNum()">提交</button>
+	<div id="box"></div>
+</body>
+<script>
+	var x=null;
+	function on(n){
+		switch(n){
+			case 1:c='+';break;
+			case 2:c='-';break;
+			case 3:c='*';break;
+			case 4:c='/';break;
+		}
+	}
+	function getNum(){
+		var inp1=Number(document.getElementById('input1').value)
+		var inp2=Number(document.getElementById('input2').value)
+		switch(c){
+			case '+':x=inp1+inp2;break;
+			case '-':x=inp1-inp2;break;
+			case '*':x=inp1*inp2;break;
+			case '/':x=inp1/inp2;break;
+		}
+		document.getElementById('box').innerHTML=x;
+	}
+</script>
+</html>

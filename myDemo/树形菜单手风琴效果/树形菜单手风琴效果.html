@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		h2,ul{
+			padding:0;
+			margin:0;
+		}
+		ul{
+			list-style:none;
+		}
+		a{
+			text-decoration: none;
+			color:#333;
+		}
+		body{
+			font-size:16px;
+		}
+		.nav{
+			width:250px;
+		}
+		.nav h2{
+			height:40px;
+			line-height:40px;
+			background:#ddd;
+			font-size:18px;
+			padding:0 20px;
+			cursor:pointer;
+			border:1px solid #ccc;
+			color:#333;
+			-webkit-user-select:none;
+		}
+		.nav ul{
+			display:none;
+		}
+
+		.nav ul li{
+			padding:0 20px;
+			height:38px;
+			line-height: 39px;
+			border:1px solid #ccc;
+			border-top:none;
+		}
+	</style>
+</head>
+<body>
+	<h1>树形菜单导航 手风琴效果</h1>
+
+	<hr>
+
+	<div id="nav" class="nav">
+		<h2>用户管理</h2>
+		<ul>
+			<li><a href="#">用户查询</a></li>
+			<li><a href="#">用户添加</a></li>
+			<li><a href="#">用户删除</a></li>
+			<li><a href="#">用户修改</a></li>
+			<li><a href="#">用户验证</a></li>
+		</ul>
+
+		<h2>商品管理</h2>
+		<ul>
+			<li><a href="#">商品添加</a></li>
+			<li><a href="#">商品删除</a></li>
+			<li><a href="#">商品修改</a></li>
+			<li><a href="#">商品查询</a></li>
+		</ul>
+
+		<h2>商品管理</h2>
+		<ul>
+			<li><a href="#">商品添加</a></li>
+			<li><a href="#">商品删除</a></li>
+			<li><a href="#">商品修改</a></li>
+			<li><a href="#">商品查询</a></li>
+		</ul>
+		<h2>商品管理</h2>
+		<ul>
+			<li><a href="#">商品添加</a></li>
+			<li><a href="#">商品删除</a></li>
+			<li><a href="#">商品修改</a></li>
+			<li><a href="#">商品查询</a></li>
+		</ul>
+		<h2>商品管理</h2>
+		<ul>
+			<li><a href="#">商品添加</a></li>
+			<li><a href="#">商品删除</a></li>
+			<li><a href="#">商品修改</a></li>
+			<li><a href="#">商品查询</a></li>
+		</ul>
+		<h2>商品管理</h2>
+		<ul>
+			<li><a href="#">商品添加</a></li>
+			<li><a href="#">商品删除</a></li>
+			<li><a href="#">商品修改</a></li>
+			<li><a href="#">商品查询</a></li>
+		</ul>
+	</div>
+
+
+	<script src="jQuery-1.12.4.min.js"></script>
+	<script>
+		$(function(){
+			$(".nav ul:first").show();
+			$('.nav h2').click(function(){
+				$(this).next('ul').slideDown().siblings('ul').slideUp();
+			})
+		})
+	</script>
+</body>
+</html>

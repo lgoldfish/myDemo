@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function fn1(param){
+
+		var arr = [];
+		var obj = {};
+
+		for(var i=0;i<param.length;i++){
+			if(!obj[param[i]]){
+				arr.push(param[i]);
+				obj[param[i]] = 1;
+			}
+		}
+
+		return arr;
+	}
+
+var arr = ['a','a','b','b','c','d'];
+
+
+var a = fn1(arr);
+console.log(a);
+
+
+
+
+</script>
+</html>

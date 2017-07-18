@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+#txt {
+    background: linear-gradient(to bottom, #0469C0, #66A6DF);
+    width: 320px;
+    height: 100px;
+    border: 1px solid #ccc;
+    margin: 100px auto;
+    color: #fff;
+}
+
+#txt1 {
+    line-height: 100px;
+    font-size: 35px;
+    padding-left: 15px;
+}
+
+#txt2 {
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+#txt3 {
+    font-size: 20px;
+}
+
+#txt4 {
+    font-size: 16px;
+    margin-top: -15px;
+}
+
+.f1 {
+    float: left;
+}
+
+.f2 {
+    float: left;
+    padding-left: 40px;
+}
+</style>
+
+<body >
+    <div id="txt">
+        <div class="f1">
+            <span id="txt1"></span><span id="txt2"></span>
+        </div>
+        <div class="f2">
+            <p id="txt3"></p>
+            <p id="txt4"></p>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+function startTime() {
+    var today = new Date()
+    console.log(today)
+    var h = today.getHours()
+    var m = today.getMinutes()
+    var s = today.getSeconds()
+    var d = today.getDate()
+    var mon = today.getMonth()+1
+    var y = today.getFullYear()
+    var w = today.getDay()
+    m = checkTime(m)
+    s = checkTime(s)
+    mon = checkTime(mon)
+    d = checkTime(d)
+    switch (w) {
+        case 1:
+            w = "一";
+            break;
+        case 2:
+            w = "二";
+            break;
+        case 3:
+            w = "三";
+            break;
+        case 4:
+            w = "四";
+            break;
+        case 5:
+            w = "五";
+            break;
+        case 6:
+            w = "六";
+            break;
+        case 0:
+            w = "日";
+            break;
+    }
+    document.getElementById('txt1').innerHTML = h + ":" + m
+    document.getElementById('txt2').innerHTML = s
+    document.getElementById('txt3').innerHTML = "星期" + w
+    document.getElementById('txt4').innerHTML = y + "年" + mon + "月" + d + "日"
+   
+}
+
+function checkTime(i) {
+    if (i < 10) {
+        i = "0" + i
+    }
+    return i
+}
+startTime()
+setInterval(startTime,1000)
+</script>
+
+</html>

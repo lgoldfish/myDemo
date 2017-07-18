@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<h1>数据类型转换</h1>
+
+	<script>
+		var n = Number('123');
+		console.log(n);  //123
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number('abc');
+		console.log(n);   //NaN
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number('');
+		console.log(n);  //0
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number('123abc');
+		console.log(n);  //NaN
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number('abc123');
+		console.log(n);  //NaN
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number(true);
+		console.log(n);  //1
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number(false);
+		console.log(n);  //0
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number(null);
+		console.log(n);  //0
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = Number(undefined);
+		console.log(n);  //NaN
+		console.log(typeof(n));//Number
+		console.log("");
+
+
+		var n = String(1231);
+		console.log(n);  //1231
+		console.log(typeof(n));//String
+		console.log("");
+
+
+		var n = String(0);
+		console.log(n);  //0
+		console.log(typeof(n));//String
+		console.log("");
+
+
+		var n = String(true);
+		console.log(n);  //true
+		console.log(typeof(n));//String
+		console.log("");
+
+
+		var n = String(false);
+		console.log(n);  //false
+		console.log(typeof(n));//String
+		console.log("");
+
+
+
+		var n = Boolean(100);
+		console.log(n);  //true
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = Boolean(-100);
+		console.log(n); //true
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = Boolean(0);
+		console.log(n);  //false
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = Boolean("");
+		console.log(n);  //false
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = Boolean(null);
+		console.log(n);  //false
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+		var n = Boolean(undefined);
+		console.log(n);  //false
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = Boolean(NaN);
+		console.log(n);  //false
+		console.log(typeof(n));//Boolean
+		console.log("");
+
+
+		var n = parseInt("12.9");
+		console.log(n);		//12
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+		var n = parseInt("123abc");
+		console.log(n);		 //123   
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+		var n = parseInt("abc123");
+		console.log(n);	  //NaN	
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+
+		var n = parseInt("12e3");
+		console.log(n);		//12
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+
+		var n = parseFloat("12.3abc");
+		console.log(n);		//12.3
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+
+		var n = parseInt(false);
+		console.log(n);	  //NaN	
+		console.log(typeof(n));	//Number	
+		console.log('');
+
+
+		var n = parseInt("");
+		console.log(n);	 //NaN	
+		console.log(typeof(n));	//Number	
+		console.log('');
+	</script>
+</body>
+</html>

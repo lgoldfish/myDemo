@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<style>
+		div#container div {
+			width: 300px;
+			height: 300px;
+			border:1px solid #ccc;
+			display:none;
+		}
+		input.active {
+			background:red;
+		}
+	</style>
+</head>
+<body>
+		<div id="container">
+			<input type="button" value="1" class='active'>
+			<input type="button" value='2'>
+			<input type="button" value="3">
+
+			<div style='display:block'>这是第一个页面</div>
+			<div>这是第二个页面</div>
+			<div>这是第三个页面</div>
+		</div>
+</body>
+<script>
+/*
+	实现选项卡的思路：
+	1. 选取元素
+	2. 通过for循环给所有的按钮绑定单击事件 
+	3. 把循环中的i 当做input这一组的索引 用来操作input
+	4. 在给按钮的单击事件里面在使用一次循环 -- 给所有的div和按钮的样式全部清除
+	5. 当我们单击了某个按钮之后，先让被单击的按钮背景变成红色
+	6. 让div显示  --- 与 被单击按钮对应的这个div
+*/
+
+	//选取元素  --  选取必要标签
+	var oParent = document.getElementById('container');
+//	缩小搜索查找范围，提高代码效率
+	var oInput = oParent.getElementsByTagName('input');
+	var oDiv = oParent.getElementsByTagName('div');
+
+	for(var i=0;i<oInput.length;i++){
+		//console.log(oInput[i]);
+		oInput[i].index = i;  //自定义索引   input 三个  input[0]  input[1]  ---  
+		oInput[i].onclick = function(){
+			for(var i=0;i<oInput.length;i++){
+				oDiv[i].style.display = 'none';
+				oInput[i].className = ''; // className 属性表示标签类名
+			}
+			this.className = 'active';
+			oDiv[this.index].style.display = 'block';
+		}
+	}
+
+</script>
+</html>

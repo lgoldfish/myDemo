@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+
+	<input type="button" @click="ok" value="dianji">
+
+	<script src="vue.js"></script>
+	<script src="vue-resource.js"></script>
+
+
+	<script>
+		 
+		  new Vue({
+		  	el:"body",
+		  	data:{
+
+		  	},
+		  	methods:{
+
+		  	 // get请求
+		  		// ok(){
+		  		// 	this.$http.get("get.php",{a:1,b:2}).then(function(data){
+      //                 console.log(data.data)
+		  		//   },function(err){
+
+		  		//    })
+		  		// }
+
+         //post请求  emulateJSON:true必须解析
+		  		// ok(){
+		  		// 	this.$http.post("post.php",{a:1,b:2},{emulateJSON:true}).then(function(data){
+      //                 console.log(data.data)
+		  		//   },function(err){
+
+		  		//    })
+		  		// }
+
+
+		  	//josnp请求   必须有callback
+
+
+		  	
+             ok(){
+		  			this.$http.jsonp("https://sug.so.360.cn/suggest",{
+		  				word:"xiong"
+		  			}).then(function(data){
+                      console.log(data.data.s)
+		  		  },function(err){
+
+		  		   })
+		  		}
+
+            // https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a
+
+        
+
+             // ok(){
+
+             // 	 this.$http.jsonp("https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",{
+             // 	 	wd:"龚家"
+             // 	 },{
+             // 	 	jsonp:"cb"
+             // 	 }).then(function(data){
+             // 	 	  console.log(data.data.s)
+             // 	 })
+             // }
+
+		  	}
+		  })
+
+	</script>
+</body>
+</html>

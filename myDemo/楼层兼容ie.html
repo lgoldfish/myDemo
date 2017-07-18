@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+           *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+           }
+           .main{
+            width: 800px;
+            margin: 0 auto;
+           }
+          .main li{
+            width: 800px;
+            height: 500px;
+            font-size: 100px;
+           }
+
+           .floor{
+               position:fixed;
+               left: 50px;
+               top:200px;
+               display: none;
+           }
+           .floor ul{
+            width: 40px;          
+            background: red;
+           }
+
+           .floor ul li{
+            width: 40px;
+            height: 40px;
+            background: yellow;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            font-family: 微软雅黑;
+            font-size: 12px;
+            color:#666;
+           }      
+    </style>
+</head>
+<body>
+    <ul class="main">
+        <li>banner</li>
+        <li id="text" style="background:pink">1</li>
+        <li style="background:yellow">2</li>
+        <li style="background:#f5f5f5">3</li>
+        <li style="background:#abcdef">4</li>
+        <li style="background:red">5</li>
+        <li style="background:green">6</li>     
+        <li style="background:#f90">7</li>     
+    </ul>
+    <div class="floor" id="floors">
+         <ul>
+             <li>1F</li>
+             <li>2F</li>
+             <li>3F</li>
+             <li>4F</li>
+             <li>5F</li>
+             <li>6F</li>
+             <li>7F</li>
+         </ul>
+    </div>
+
+    <script>
+        // 获取li集合
+        var li = document.getElementById('floors').getElementsByTagName('li');
+         
+         // 定义数组
+        var arr = ['服装','手机','家具','游戏','电器','通信','冰箱'];
+        var arr1 = ['1F','2F','3F','4F','5F','6F','7F'];
+        var arr2=['500','1000','1500','2000','2500','3000','3500']
+        var goS,nowS,timer;
+        // 遍历
+        
+         for( var i=0;i<li.length;i++){
+             
+            // 存下标
+            li[i].i=i;
+
+            li[i].onmouseover=function(){
+
+                this.innerHTML=arr[this.i];
+                this.style.background="red";
+                this.style.color='#fff';
+
+            }
+
+            li[i].onmouseout=function(){
+
+                this.innerHTML=arr1[this.i];
+                this.style.background="yellow";
+                this.style.color="#666";
+            }
+
+            li[i].onclick=function(){
+
+                // 拿到要去的楼层高度
+                 goS = arr2[this.i];
+
+                 if (timer){
+                        clearInterval(timer);
+                 }
+
+               //如果当前滚轮的高度大于你要去的楼层高度，就执行runY函数 
+             
+                if (scroll()>goS){
+                    // 每一毫秒都执行一次定时函数，每一次都要把滚轮高度减10
+                    timer = setInterval(runY,1);
+
+                 }
+                           
+               //如果当前滚轮的高度小于你要去的楼层高度，就执行runX函数
+            
+                  
+                    if (scroll() < goS) {
+
+                        // 每一毫秒都执行一次定时函数，每一次都要把滚轮高度加10
+
+                        timer = setInterval(runX,1);  
+                    }
+             
+                
+
+
+
+            }
+
+            function runY(){
+                // 滚动高度要不断的减少，才能到达你要去的楼层高度
+                if(document.body.scrollTop){
+                    document.body.scrollTop=document.body.scrollTop-10;
+                    // 假如滚轮高度小于等于你要去的楼层高度，清楚定时函数就停止了
+                    if (document.body.scrollTop <= goS ) {
+                        document.body.scrollTop = goS
+                        clearInterval(timer);
+                    }
+                }else{
+                   document.documentElement.scrollTop=document.documentElement.scrollTop-10;
+                   if(document.documentElement.scrollTop<=goS){
+                      document.documentElement.scrollTop=goS;
+                      clearInterval(timer);
+                   }
+                }
+             
+
+            }
+
+            function runX(){
+                // 滚动高度要不断的增加，才能到达你要去的楼层高度
+                if(document.body.scrollTop){
+                     document.body.scrollTop=document.body.scrollTop+10;
+                                   
+                    if (document.body.scrollTop >= goS  || document.body.scrollTop >=3201) {
+                        document.body.scrollTop = goS;
+                        clearInterval(timer);
+                     }
+                }else{
+
+                   document.documentElement.scrollTop=document.documentElement.scrollTop+10;
+                    if(document.documentElement.scrollTop>=goS||document.documentElement.scrollTop>=3199){
+                      document.documentElement.scrollTop=goS;
+                      clearInterval(timer);
+                   } 
+                }
+               
+            }
+
+         }
+
+            console.log(document.body.scrollTop);
+          
+         // 滚动执行的函数，检测滚动条的距离
+         
+
+         window.onscroll=function(){
+
+            var floors = document.getElementById('floors');
+
+              
+           console.log(document.body.scrollTop);
+           console.log(document.documentElement.scrollTop)
+           var top=document.body.scrollTop||document.documentElement.scrollTop;
+
+          if(top<=10){
+                
+                floors.style.display="none";
+               
+            }else{
+                floors.style.display="block";
+               
+               
+            }
+             
+
+         }
+
+
+
+         function scroll(){
+            if(document.body.scrollTop){
+                return document.body.scrollTop;
+            }else{
+                return document.documentElement.scrollTop;
+            }
+         }
+
+
+
+        
+    </script>
+</body>
+</html>

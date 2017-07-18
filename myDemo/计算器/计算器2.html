@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box {
+			font-size: 20px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		第一个数：<input type="text" id="num1"><br>
+		第二个数：<input type="text" id="num2"><br>
+		<button >+</button>
+		<button >-</button>
+		<button >*</button>
+		<button >/</button>
+		<div id="box"></div>
+	</div>
+</body>
+<script>
+  		var oBtn=document.getElementsByTagName('button');
+  		var oDiv=document.getElementById('box');
+     for (var i=0;i<oBtn.length;i++){
+     oBtn[i].index=i;
+     var x=null;
+     oBtn[i].onclick=function(){
+     	var oNum1=Number(document.getElementById('num1').value);
+  
+  		var oNum2=Number(document.getElementById('num2').value);
+     switch(this.index){
+     	case 0:
+     	x=oNum1+oNum2;
+     	oDiv.innerHTML=x;
+     	break;
+     	case 1:
+     	x=oNum1-oNum2;
+     	oDiv.innerHTML=x;
+     	break;
+     	case 2:
+     	x=oNum1*oNum2;
+     	oDiv.innerHTML=x;
+     	break;
+     	case 3:
+     	x=oNum1/oNum2;
+     	oDiv.innerHTML=x;
+     	break;
+     	default:
+     	document.write('输入有误')；
+     }
+ 	}
+ }
+</script>
+</html>

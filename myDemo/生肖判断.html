@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>无标题</title>
+	<style type="text/css">
+		#box{
+
+			font-size: 100px;
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="content">
+	<button id="btn" onclick= "check()">查询</button>
+	<div id="box"></div>
+</body>
+<script type="text/javascript">
+	function check()
+	{
+		//1 获取输入的内容
+		var obj = document.getElementById("content").value;
+		//2 进行判断
+		if(obj > 2017 || obj <0)
+		{
+			var info = "傻吊,请你严肃一点";
+		}
+		else
+		{
+			var num = obj % 12;
+		
+			switch(num)
+			{
+				case 0 : var info = "猴";break;
+				case 1 : var info = "鸡";break;
+				case 2 : var info = "狗";break;
+				case 3 : var info = "猪";break;
+				case 4 : var info = "鼠";break;
+				case 5 : var info = "牛";break;
+				case 6 : var info = "虎";break;
+				case 7 : var info = "兔";break;
+				case 8 : var info = "龙";break;
+				case 9 : var info = "蛇";break;
+				case 10 : var info = "马";break;
+				case 11 : var info = "羊";break;
+				default:
+				       var info="请你严肃一点";break;
+			}
+
+		}
+		document.getElementById("box").innerHTML = info;
+	}
+
+
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二级地址联动</title>
+	<style>
+		select {
+			width: 100px;
+		}
+	</style>
+</head>
+<body>
+	<select  id="prov"></select>
+	<select  id="city"></select>
+</body>
+
+<script>
+//省份列表
+var prov_list = ['江苏','江西','安徽','台湾','广东'];
+
+//市列表
+var city_list = [];
+
+//将不同省份内的不同市的信息添加到city_list数组中，形成多维数组
+city_list[0] = ['南京', '苏州', '无锡', '常州', '扬州', '徐州'];
+city_list[1] = ['南昌', '赣州', '九江', '婺源', '景德镇', '鹰潭'];
+city_list[2] = ['合肥', '芜湖', '马鞍山', '安庆', '蚌埠', '宿州'];
+city_list[3] = ['台北', '台南', '台中', '高雄', '基隆', '花莲'];
+city_list[4] = ['广州', '东莞', '深圳', '汕头', '佛山', '潮州'];
+
+//获取省份  和 市的 下拉
+var prov_select = document.getElementById('prov');
+var city_select = document.getElementById('city');
+
+
+
+//添加数据 
+for(var i=0;i<prov_list.length;i++){
+	prov_select.add(new Option(prov_list[i],i));
+	// prov_list.innerHTML = '<option></option>';
+}
+
+//给省份的选择框添加change事件
+prov_select.onchange = function (){
+	//console.log(Math.random());
+	//将省与市相互管联
+	var index = this.value;
+
+	city_select.length = 0;
+	// city_list[0]
+	var citys = city_list[index];
+
+	//console.log(citys);
+	//将拿到的市放置到第二个下拉
+	for(var i=0;i<citys.length;i++){
+		city_select.add(new Option(citys[i],i));
+	}
+	//console.log(index);
+}
+
+prov_select.onchange(); // 手动调用一下事件
+//console.log(city_list);
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	行数:<input type="number" id="line" ><br>
+	列数:<input type="number" id="list" ><br>
+	宽度:<input type="text" id="width" ><br>
+	border:<input type="text" id="border" ><br>
+	<input type="submit" name="" value="提交" onclick="row()" >
+	<div id="d1"></div>
+</body>
+<script type="text/javascript">
+	function row (){
+		var table=document.createElement("table");
+		var wid=document.getElementById("width").value
+		var bor=document.getElementById("border").value
+   		 table.setAttribute("border",bor);
+   		 table.setAttribute("width",wid)
+		var rows=document.getElementById("line").value
+		var cols=document.getElementById("list").value
+		console.log(rows)
+		console.log(cols)
+    for(var i=1;i<=rows;i++){
+    	console.log(rows)
+        var tr=document.createElement("tr");
+        for(var j=1;j<=cols;j++){
+            var td=document.createElement("td");
+            td.innerHTML=i*j;
+            tr.appendChild(td);
+            }
+           table.appendChild(tr); 
+        }
+         document.getElementById("d1").appendChild(table);
+	}
+
+</script>
+</html>

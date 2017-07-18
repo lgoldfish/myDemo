@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		#box{
+			font-size: 100px;
+			color: red;	
+		}
+	</style>
+</head>
+<body>
+	<h1>实现一个计算器(使用switch判读来实现下面的计算器效果)</h1>
+	第一个数： <input type="number"  id="input1">
+    <br><br>
+	第二个数： <input type="number"  id="input2">
+<br><br>
+<button onclick="getNum(1)">+</button>
+<button onclick="getNum(2)">-</button>
+<button onclick="getNum(3)">*</button>
+<button onclick="getNum(4)">/</button>
+<div id="box"></div>
+
+
+    <script>
+          
+          // 传参
+
+          function getNum(n){
+              
+               var inp1=Number(document.getElementById('input1').value);
+               var inp2=Number(document.getElementById('input2').value);
+
+               switch(n){
+
+               	   case 1: num=inp1+inp2;break;
+               	   case 2: num=inp1-inp2;break;
+               	   case 3: num=inp1*inp2;break;
+               	   case 4: num=inp1/inp2;break;
+               }
+               
+               document.getElementById("box").innerHTML=num;
+          }
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	第一个数字：<input type="number" name="" id="">
+	<br>
+	<br>
+	+<input type="radio" name="ra" id="" checked>
+	-<input type="radio" name="ra" id="">
+	*<input type="radio" name="ra" id="">
+	/<input type="radio" name="ra" id="">
+	<br>
+	<br>
+	第二个数字：<input type="number" name="" id="">
+	<br><br>
+	<button id='btn'>提交</button>
+	<div id='div'>here</div>
+</body>
+<script>
+	var oInput = document.getElementsByTagName('input');
+	var btn=document.getElementById('btn');
+	var oDiv=document.getElementById('div');
+	btn.onclick=function () {
+		var a=Number(oInput[0].value);
+		var b=Number(oInput[5].value);
+		for (var i =1;i<5;i++){
+			if(oInput[i].checked){
+				var goal=i;
+			}
+			switch(goal){
+               	   case 1: c=a+b;break;
+               	   case 2: c=a-b;break;
+               	   case 3: c=a*b;break;
+               	   case 4: c=a/b;break;
+               }
+		}
+		oDiv.innerHTML=c;
+	}
+</script>
+</html>

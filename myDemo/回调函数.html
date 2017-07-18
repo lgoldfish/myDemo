@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>回调函数</title>
+</head>
+<body>
+		函数 ：                   10       20      函数 
+			function show (num1 ,num2,callback) {
+				code.....
+				callback();  // fn1()
+			}
+
+			show(10,20,fn1)
+
+			function fn1 () {
+			
+			}
+
+			回调函数： 例如此时有函数a和函数b ，把函数b当做参数传入到函数a中去，当函数a调用的时候，此时执行顺序是先
+			执行函数a  ，然后函数a执行完成自动执行函数b
+</body>
+<script>
+	function show(num1,num2,callback){
+		var n1 = num1;
+		var n2 = num2 ;
+
+		var n3 = n1 + n2;
+		callback(n3);  //callback()  ---fn1  ()
+		//fn1(n3);
+	}
+	function fn1 (par1) {
+		document.write(par1);
+	}
+	function fn2 (par1) {
+		alert(par1);
+	}
+	show(10,20,fn2);
+
+
+
+/*	function dn1() {
+		var n1 =10 ;
+		var n2 = 20;
+		return function (){
+			alert(n1 + n2)
+		}
+	}*/
+</script>
+</html>

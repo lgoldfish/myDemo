@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#box1 {
+		height: 100px;
+		width: 600px;
+		border: 2px solid #ccc;
+	}
+	#box2 {
+		height: 100px;
+		width: 0;
+		background-color: blue;
+	}
+	</style>
+</head>
+<body>
+	<h1>滚动条</h1>
+	<hr>
+	<div id="box1">
+		<div id="box2"></div>
+	</div>
+	<button id="btn">开始</button>
+</body>
+<script>
+    var oBtn=document.getElementById('btn');
+	var oBox2=document.getElementById('box2');
+	 	var i=0;
+	 oBtn.onclick= function(){
+		var timer=setInterval(test,10);
+		function test(){
+		if(i<=600)
+		oBox2.style.width=i+'px';
+		i++;
+	}
+}
+</script>
+</html>

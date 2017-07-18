@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+		#box{
+			font-size: 100px;
+			color: red;
+		
+		}
+	</style>
+
+</head>
+<body>
+	<h1>实现一个计算器(eval函数实现)</h1>
+	第一个数： <input type="number"  id="input1">
+    <br><br>
+	<input type="radio" name="js" id="" onclick="getF('+')"  checked>+
+	<input type="radio" name="js" id="" onclick="getF('-')">-
+	<input type="radio" name="js" id="" onclick="getF('*')">*
+	<input type="radio" name="js" id="" onclick="getF('/')">/
+    <br><br>
+	第二个数： <input type="number"  id="input2">
+	<br><br>
+	<button onclick="getNum()">提交</button>
+	<div id="box"></div>
+
+
+	<script>
+
+	//eval函数里面的参数是string，它可以让括号里面的参数变成可以执行的javascript代码
+		    
+         var f=null,num=null;
+
+         function getF(n){
+         	f=n;       
+         }	
+
+
+         function getNum(){
+         	 var inp1=Number(document.getElementById('input1').value);
+         	 var inp2=Number(document.getElementById('input2').value);  
+
+
+             document.getElementById('box').innerHTML=eval(inp1+f+inp2);
+
+         	 
+         }
+
+	</script>
+</body>
+</html>

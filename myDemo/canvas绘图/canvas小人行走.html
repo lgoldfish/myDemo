@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绘制文字</title>
+	<style>
+
+	</style>
+</head>
+<body>
+
+	<canvas id="mycanvas">您的浏览器不兼容canvas</canvas>
+	
+	<script>
+		
+		var canvas = document.getElementById("mycanvas");
+
+		canvas.width = 500;
+		canvas.height = 500;
+		canvas.style.border = "1px solid #ccc";
+
+	
+		var cxt = canvas.getContext("2d"); //绘图环境
+
+		var img = document.createElement("img");
+		img.src = "./1.png";
+
+
+		//定义奔跑方向
+		var dirIndex = 0;
+		var row=0;
+		var col=0;
+		img.onload = function(){
+			var frameIndex = 0;
+
+			setInterval(function(){
+				cxt.clearRect(0,0,canvas.width,canvas.height); //清空画面
+				//canvas.width = canvas.width;
+
+				cxt.drawImage(img, frameIndex * 50, dirIndex * 65, 50, 65, row, col, 50, 65 );
+
+				frameIndex ++;
+				if (frameIndex > 3) {
+					frameIndex = 0;
+				}
+
+			document.onkeydown = function(e){
+			switch(e.keyCode) {
+				case 37: dirIndex = 1;if(row<=0){row=0;}else{row-=5;}break;
+				case 38: dirIndex = 3;if(col<=0){col=0;}else{col-=5;}break;
+				case 39: dirIndex = 2;if(row>=450){row=450;}else{row+=5;}break;
+				case 40: dirIndex = 0;if(col>=435){col=435}else{col+=5;}break;
+			}
+		}
+			}, 100);
+
+		}
+
+	</script>
+</body>
+</html>

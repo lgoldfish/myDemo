@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+</body>
+<script type="text/javascript">
+	var canvas = document.getElementById("mycanvas")
+	canvas.width = 600;
+	canvas.height = 600;
+	canvas.style.marginLeft="400px"
+	canvas.style.marginTop="100px"
+	var cxt = canvas.getContext("2d")
+	cxt.beginPath()
+	cxt.moveTo(0, 0)
+	cxt.lineTo(0, 600)
+	cxt.lineTo(300, 300)
+	cxt.closePath()
+	cxt.fillStyle = "#FF0101"
+	cxt.fill()
+	    // -------------------------------------------红
+	cxt.beginPath()
+	cxt.moveTo(0, 0)
+	cxt.lineTo(600, 0)
+	cxt.lineTo(300, 300)
+	cxt.closePath()
+	cxt.fillStyle = "#FEA400"
+	cxt.fill()
+	    //------------------------------------------黄
+	cxt.beginPath()
+	cxt.moveTo(600, 0)
+	cxt.lineTo(600, 300)
+	cxt.lineTo(450, 150)
+	cxt.closePath()
+	cxt.fillStyle = "#FEFE00"
+	cxt.fill()
+	//     // ----------------------------------------橙黄
+	cxt.beginPath()
+	cxt.moveTo(300, 300)
+	cxt.lineTo(150, 450)
+	cxt.lineTo(450, 450)
+	cxt.closePath()
+	cxt.fillStyle = "#0000FE"
+	cxt.fill()
+	//     //------------------------------------------蓝
+	cxt.beginPath()
+	cxt.moveTo(600, 300)
+	cxt.lineTo(600, 600)
+	cxt.lineTo(300, 600)
+	cxt.closePath()
+	cxt.fillStyle = "#00FEFE"
+	cxt.fill()
+	//     //--------------------------------天蓝
+	cxt.beginPath()
+	cxt.moveTo(0, 600)
+	cxt.lineTo(300, 600)
+	cxt.lineTo(450, 450)
+	cxt.lineTo(150, 450)
+	cxt.closePath()
+	cxt.fillStyle = "#7F007F"
+	cxt.fill()
+	//     // --------------------------------
+	cxt.beginPath()
+	cxt.moveTo(300, 300)
+	cxt.lineTo(450, 150)
+	cxt.lineTo(600, 300)
+	cxt.lineTo(450, 450)
+	cxt.closePath()
+	cxt.fillStyle = "#007F00"
+	cxt.fill()
+</script>
+
+</html>

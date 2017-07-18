@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义右键菜单</title>
+    <style>
+    body {
+        font-size: 16px;
+        font-family: 'KaiTi';
+    }
+    
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    .contextmenu {
+        width: 200px;
+        border: 1px solid #ccc;
+        box-shadow: 3px 3px 3px #ccc;
+        background: #fff;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        display: none;
+    }
+    
+    .contextmenu li {
+        height: 38px;
+        line-height: 38px;
+    }
+    
+    .contextmenu li a {
+        display: block;
+        padding: 0 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="contextmenu" id="context">
+        <ul>
+            <li><a href="#">复制</a></li>
+            <li><a href="#">粘贴</a></li>
+            <li><a href="#">剪切</a></li>
+            <li><a href="#">获取种子</a></li>
+            <li><a href="#">分享到百度云</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+//event  --- > 事件的老祖宗  存在于任何的事件处理函数中  ，是一个对象 
+//env  --- >event 
+document.oncontextmenu = function(env) {
+    //console.log(event);
+    // console.log(env);
+    //兼容解决
+    var e = env || window.event; //判断检测event对象是否存在，并且把这个对象赋值给e
+    var context = document.getElementById('context');
+    context.style.display = 'block';
+    //获取页面的宽度和高度 
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    //获取鼠标坐标
+    var x = e.clientX;
+    var y = e.clientY;
+    //让右键菜单跟随鼠标坐标
+    context.style.left = Math.min(w - 202, x) + 'px';
+    context.style.top = Math.min(h - 192, y) + 'px';
+    //console.log('鼠标的横坐标'+x+',鼠标的纵坐标'+y);
+    return false;
+}
+
+document.onclick = function() {
+        document.getElementById('context').style.display = 'none';
+    }
+    //获取一组li
+var lis = document.getElementById('context').getElementsByTagName('li');
+
+for (var i = 0; i < lis.length; i++) {
+    //onmouseover 鼠标悬浮 
+    lis[i].onmouseover = function() {
+            this.style.background = '#ddd';
+        }
+        //鼠标移开
+    lis[i].onmouseout = function() {
+        this.style.background = '#fff';
+    }
+}
+</script>
+
+</html>

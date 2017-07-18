@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 600px;
+			border: 1px solid #ccc;
+			margin:100px auto;
+		}
+		#name {
+			width: 530px;
+			height: 100px;
+			border: 3px solid #ccc;
+			margin: 30px auto;
+			text-align: center;
+			line-height: 100px;
+			font-size: 60px;
+		}
+		#btn {
+			width: 530px;
+			height: 60px;
+			background: #ccc;
+			font-size: 40px;
+			text-align: center;
+			line-height: 60px;
+			margin:0 auto;
+			display: block;
+		}
+		#d1 {
+			width: 530px;
+			border: 2px solid green;
+			border-radius: 10px;
+			margin: 30px auto;
+			font-size: 30px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="name">****</div>
+		<button id="btn" onclick='scroll()'>开始</button>
+		<div id="d1"></div>
+	</div>
+</body>
+<script>
+	var oName=document.getElementById('name')
+	var oBtn=document.getElementById('btn')
+	var oD1=document.getElementById('d1')
+	var arr=['王小蒙','谢永强','刘能','谢大脚','王大拿','赵四','王天来','谢广坤','刘大脑袋','王老七','鸭蛋','宋小宝']
+	var timer=null;
+	var num=null;
+	function getName(){
+		num=Math.floor(Math.random()*arr.length)
+		if(num<arr.length){oName.innerHTML=arr[num]
+	}}
+	function scroll(){
+		if(oBtn.innerHTML=='开始'){
+			timer=setInterval(getName,50);
+			oBtn.innerHTML='暂停'
+		}else {
+			clearInterval(timer)
+			oBtn.innerHTML='开始'
+			if(arr.length>0){
+				oD1.innerHTML+=arr[num]+'<br>'
+			    arr.splice(num,1)
+			}else{
+				oName.innerHTML='别取了'
+			}
+		}
+	}
+</script>
+</html>
